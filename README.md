@@ -7,3 +7,9 @@
 - [] camada repository
 - [] camada de service
 - [] endpoints
+- [] criar doc requeriments
+
+## Deps
+
+pip install mysql-connector-python
+pip install python-dotenv

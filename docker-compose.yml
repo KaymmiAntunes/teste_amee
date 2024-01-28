@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password_root
       MYSQL_DATABASE: amee_db
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword 
     volumes: 
      - ./data:/var/lib/mysql
     ports:
