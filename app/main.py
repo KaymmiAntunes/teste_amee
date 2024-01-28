@@ -1,6 +1,10 @@
 from dotenv import load_dotenv
-from database.postgres import connect_db
+from database.postgres import *
 
 load_dotenv()
 
-connect_db()
+db_connection = connect_db()
+
+migrate(db_connection)
+
+print("SUCESSO")

@@ -2,21 +2,39 @@ import os
 import psycopg2
 
 def connect_db():
-    connection = psycopg2.connect(
+    return psycopg2.connect(
         host=os.getenv("DB_HOST"),
         database=os.getenv("DB_DATABASE"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD")
     )   
 
-    cursor = connection.cursor()
+database_schemma = """
+CREATE TABLE IF NOT EXISTS clientes (
+    uc VARCHAR(32) PRIMARY KEY
+);
 
-    cursor.execute("SELECT 'KAYMMI'")
+CREATE TABLE IF NOT EXISTS faturas (
+    id SERIAL PRIMARY KEY,
+    uc VARCHAR(32) NOT NULL,
+    mes_referencia DATE NOT NULL,
+    data_emissao DATE NOT NULL,
+    data_vencimento DATE NOT NULL,
+    total DECIMAL(5, 2) NOT NULL,
+    energia_consumida INTEGER NOT NULL,
+    tarifa DECIMAL(2, 10) NOT NULL,
+    codigo_barras VARCHAR(56) NOT NULL,
+    cnpj VARCHAR(14) NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    id_cliente INTEGER NOT NULL,
+    FOREIGN KEY (uc) REFERENCES clientes (uc)
+);
+""" 
 
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print(row)
-
-    cursor.close()
-    connection.close()
+def migrate (conn):
+    cur = conn.cursor()
+    
+    cur.execute(database_schemma)
+    conn.commit()
+    
+    cur.close()
