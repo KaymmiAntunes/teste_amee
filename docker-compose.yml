@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password_root
+      MYSQL_DATABASE: amee_db
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    volumes: 
+     - ./data:/var/lib/mysql
+    ports:
+     - 3307:3306
+
+     
+
+  
