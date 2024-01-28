@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:latest
+    image: postgres:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password_root
-      MYSQL_DATABASE: amee_db
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword 
+      POSTGRES_DB: amee_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password 
     volumes: 
-     - ./data:/var/lib/mysql
+     - ./data:/var/lib/potgresql/data
     ports:
-     - 3307:3306
+     - 5432:5432
+  
 
      
 
