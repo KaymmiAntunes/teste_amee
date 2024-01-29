@@ -1,4 +1,5 @@
-from postgres import get_connection
+from database.postgres import get_connection
+
 
 def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, cnpj, valor):
     conn = get_connection()
