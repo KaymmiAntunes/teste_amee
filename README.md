@@ -4,7 +4,7 @@
 - [x]  criar docker compose no mysql
 - [x] carregar .env
 - [x] conectar com database
-- [] camada repository
+- [x] camada repository
 - [] camada de service
 - [] endpoints
 - [] criar doc requeriments
