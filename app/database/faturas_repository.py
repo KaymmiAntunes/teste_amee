@@ -1,4 +1,7 @@
-def create (conn, uc, mes_referencia, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, cnpj, valor):
+from postgres import get_connection
+
+def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, cnpj, valor):
+    conn = get_connection()
     cur = conn.cursor()
         
     insert_sql = f""" 
@@ -10,7 +13,8 @@ def create (conn, uc, mes_referencia, data_emissao, data_vencimento, total, ener
     conn.commit()
     cur.close()
     
-def update(conn, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
+def update(data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
+    conn = get_connection()
     cur = conn.cursor()
         
     update_sql = f""" 
@@ -22,7 +26,8 @@ def update(conn, data_emissao, data_vencimento, total, energia_consumida, tarifa
     conn.commit()
     cur.close()
     
-def delete(conn, id_fatura):
+def delete( id_fatura):
+    conn = get_connection()
     cur = conn.cursor()
         
     delete_sql = f""" 
@@ -34,7 +39,8 @@ def delete(conn, id_fatura):
     conn.commit()
     cur.close()
     
-def list(conn, mes_referencia):
+def list(mes_referencia):
+    conn = get_connection()
     cur = conn.cursor()
     
     list_sql = f"""
