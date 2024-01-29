@@ -6,13 +6,18 @@ def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_con
         
     insert_sql = f""" 
         INSERT INTO faturas(uc, mes_referencia, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, cnpj, valor)
-        VALUES('{uc}', '{mes_referencia}', '{data_emissao}', '{data_vencimento}', {total}, '{energia_consumida}', {tarifa}, '{codigo_barras}', '{cnpj}', {valor});
+        VALUES('{uc}', '{mes_referencia}', '{data_emissao}', '{data_vencimento}', {total}, '{energia_consumida}', {tarifa}, '{codigo_barras}', '{cnpj}', {valor})
+        RETURNING id;
     """ 
     
     cur.execute(insert_sql)
+    id = cur.fetchone()[0]
     conn.commit()
     cur.close()
     
+    return id
+
+
 def update(data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
     conn = get_connection()
     cur = conn.cursor()

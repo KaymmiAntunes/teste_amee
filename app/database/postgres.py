@@ -1,6 +1,13 @@
 import os
 import psycopg2
 
+_db_connection = None 
+def get_connection(): 
+    if _db_connection == None: 
+        _db_connection = connect_db()
+    
+    return _db_connection
+
 def connect_db():
     return psycopg2.connect(
         host=os.getenv("DB_HOST"),

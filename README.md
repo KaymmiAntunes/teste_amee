@@ -13,3 +13,4 @@
 
 pip install psycopg2-binary
 pip install python-dotenv
+pip install flask
