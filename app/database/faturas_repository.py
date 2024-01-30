@@ -1,5 +1,4 @@
-from database.postgres import get_connection
-
+from app.database.postgres import get_connection
 
 def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, cnpj, valor):
     conn = get_connection()
@@ -23,10 +22,18 @@ def update(data_emissao, data_vencimento, total, energia_consumida, tarifa, codi
     conn = get_connection()
     cur = conn.cursor()
         
-    update_sql = f""" 
-        UPDATE faturas( data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor)
-        VALUES('{data_emissao}', '{data_vencimento}', {total}, '{energia_consumida}', {tarifa}, '{codigo_barras}', {valor});
-    """ 
+    update_sql = f"""
+    UPDATE faturas
+    SET data_emissao = '{data_emissao}',
+        data_vencimento = '{data_vencimento}',
+        total = {total},
+        energia_consumida = '{energia_consumida}',
+        tarifa = {tarifa},
+        codigo_barras = '{codigo_barras}',
+        valor = {valor}
+    WHERE id = {id};
+"""
+
     
     cur.execute(update_sql)
     conn.commit()
@@ -53,8 +60,7 @@ def list(mes_referencia):
         SELECT * FROM faturas
         WHERE mes_referencia='{mes_referencia}'
     """
-    
-    rows= cur.fetchall(list_sql)
-    cur.close()
-    
+    cur.execute(list_sql)
+    rows = cur.fetchall()
+
     return rows

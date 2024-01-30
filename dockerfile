@@ -1,5 +1,6 @@
-#Derivando da iamgem oficial do MySQL
-FROM MySQL:5.7
+# Derivando da imagem oficial do PostgreSQL
+FROM postgres:latest
 
-#Adicionando os scripts SQL para serem executados na criação do banco
+# Adicionando os scripts SQL para serem executados na criação do banco
 COPY ./db/ /docker-entrypoint-initdb.d/
+

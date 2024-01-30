@@ -2,6 +2,7 @@ import os
 import psycopg2
 
 db_connection = None 
+
 def get_connection(): 
     global db_connection
     if db_connection == None: 
@@ -17,7 +18,7 @@ def connect_db():
         password=os.getenv("DB_PASSWORD")
     )   
 
-database_schemma = """
+database_schema = """
 CREATE TABLE IF NOT EXISTS faturas(
     id SERIAL PRIMARY KEY,
     uc VARCHAR(32) NOT NULL,
@@ -31,12 +32,12 @@ CREATE TABLE IF NOT EXISTS faturas(
     cnpj VARCHAR(14) NOT NULL,
     valor DECIMAL(10,2) NOT NULL
 );
-""" 
+"""
 
 def migrate(conn):
     cur = conn.cursor()
     
-    cur.execute(database_schemma)
+    cur.execute(database_schema)
     conn.commit()
     
     cur.close()

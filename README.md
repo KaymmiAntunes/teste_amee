@@ -5,7 +5,7 @@
 - [x] carregar .env
 - [x] conectar com database
 - [x] camada repository
-- [] camada de service
+- [x] camada de service
 - [] endpoints
 - [] criar doc requeriments
 

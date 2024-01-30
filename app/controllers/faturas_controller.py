@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from database.faturas_repository import create, update, delete, get_all_by_month
+from database.faturas_repository import create, update, delete, list
 
 class Faturas(Resource):
     def post(self):
@@ -48,13 +48,11 @@ class Faturas(Resource):
         return {'id': id}, 204 if success else 404
         
     def get(self, mes_referencia):
-        #Retorna uma lista de faturas para o mês especificado.
+        #Returns a list of invoices for the specified month.
 
-        invoices = get_all_by_month(mes_referencia)
+        invoices = list(mes_referencia)
 
         if invoices:
             return invoices, 200
         else:
             return {'message': 'No invoice found for the month specified.'}, 404
-        
-    
