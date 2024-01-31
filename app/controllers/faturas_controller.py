@@ -1,11 +1,9 @@
 # import sys
-# from pathlib import Path
-# sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+# sys.path.insert(0, 'C:\\Users\\DELL\\Desktop\\TESTE_AMEE_TI')
 # from flask_restful import Resource
-# from flask import request, abort
-# from app.database.faturas_repository import create, update, delete, lister
-# from ..validators import FaturasValidation
-
+# from flask import request
+# from database.faturas_repository import create, update, delete, lister
+# from validators.faturas_validation import FaturasValidation
 # class Faturas(Resource):
 
 #     def post(self):
@@ -75,11 +73,9 @@
 #             return {'message': 'No invoice found for the month specified.'}, 404
 from flask_restful import Resource
 from flask import request
-from database.faturas_repository import create, update, delete, lister
-from validators.faturas_validation import FaturasValidation
-import os
+from app.database.faturas_repository import create, update, delete, lister
+from app.validators.faturas_validation import FaturasValidation
 
-print(os.getcwd())
 class Faturas(Resource):
 
     def post(self):

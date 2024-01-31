@@ -1,5 +1,4 @@
 from postgres import Database
-
 # Cria uma instância da classe Database
 db = Database()
 
@@ -21,7 +20,7 @@ def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_con
     return id
 
 
-def update(id,data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
+def update(id, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
     conn = db.get_connection()
     cur = conn.cursor()
         
@@ -35,10 +34,13 @@ def update(id,data_emissao, data_vencimento, total, energia_consumida, tarifa, c
         codigo_barras = '{codigo_barras}',
         valor = {valor}
     WHERE id = {id};
-"""
+    """
     cur.execute(update_sql)
     conn.commit()
     cur.close()
+    
+    return True 
+
     
 def delete( id_fatura):
     conn = db.get_connection()
