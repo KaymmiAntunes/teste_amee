@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request, abort
-from database.faturas_repository import create, update, delete, list
+from database.faturas_repository import create, update, delete, lister
 import re
 from datetime import datetime
 
@@ -54,15 +54,15 @@ class Faturas(Resource):
     def get(self, mes_referencia):
         #Returns a list of invoices for the specified month.
 
-        invoices = list(mes_referencia)
+        invoices = lister(mes_referencia)
 
         if invoices:
             return invoices, 200
         else:
             return {'message': 'No invoice found for the month specified.'}, 404
     
-
-def validate(self, body):
+   
+    def validate(self, body):
     # This field should contain only numbers
     if not re.match("^[0-9]+$", body.get('uc')):
         abort(400, "UC should contain only numbers")

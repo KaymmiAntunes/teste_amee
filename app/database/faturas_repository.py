@@ -52,7 +52,7 @@ def delete( id_fatura):
     conn.commit()
     cur.close()
     
-def list(mes_referencia):
+def lister(mes_referencia):
     conn = get_connection()
     cur = conn.cursor()
     
