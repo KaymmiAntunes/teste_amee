@@ -5,6 +5,7 @@ from database import faturas_repository
 from validators import faturas_validation
 from database.postgres import get_connection, migrate
 from controllers.faturas_controller import Faturas
+from app.database.postgres import Database
 
 app = Flask(__name__)
 api = Api(app)
