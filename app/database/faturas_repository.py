@@ -1,4 +1,5 @@
-from postgres import Database
+from postgres_repo import Database
+
 # Cria uma instância da classe Database
 db = Database()
 
@@ -18,7 +19,6 @@ def create(uc, mes_referencia, data_emissao, data_vencimento, total, energia_con
     cur.close()
     
     return id
-
 
 def update(id, data_emissao, data_vencimento, total, energia_consumida, tarifa, codigo_barras, valor):
     conn = db.get_connection()
@@ -41,7 +41,6 @@ def update(id, data_emissao, data_vencimento, total, energia_consumida, tarifa, 
     
     return True 
 
-    
 def delete( id_fatura):
     conn = db.get_connection()
     
@@ -66,3 +65,5 @@ def lister(mes_referencia):
     rows = cur.fetchall()
 
     return rows
+
+print(Database)

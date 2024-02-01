@@ -1,7 +1,8 @@
 from flask_restful import Resource
 from flask import request
-from .database.faturas_repository import create, update, delete, lister
-from .validators.faturas_validation import FaturasValidation
+from database.faturas_repository import create, update, delete, lister
+from validators.faturas_validation import FaturasValidation
+
 
 class Faturas(Resource):
 

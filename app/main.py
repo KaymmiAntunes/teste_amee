@@ -1,17 +1,25 @@
+import sys
+sys.path.insert(0, 'C:\\Users\\DELL\\Desktop\\TESTE_AMEE_TI\\app\\database')
+
 from dotenv import load_dotenv
 from flask_restful import Api
 from flask import Flask
 from database import faturas_repository
-from .validators import faturas_validation
-from .database.faturas_repository import get_connection, migrate
-from .controllers.faturas_controller import Faturas
+from validators import faturas_validation
+from postgres_repo import Database
+from controllers.faturas_controller import Faturas
+
+# Cria uma instância da classe Database
+db = Database()
 
 app = Flask(__name__)
 api = Api(app)
 
 # Cria a conexão com o banco de dados
-db_connection = get_connection()
-migrate(db_connection)
+db_connection = db.get_connection()
+
+# Realiza a migração
+db.migrate()
 
 # Adiciona os recursos da API
 api.add_resource(Faturas, '/faturas')
@@ -26,4 +34,3 @@ app.config['ENV'] = 'development'
 # Executa o aplicativo
 if __name__ == "__main__":
     app.run(debug=True)
-
