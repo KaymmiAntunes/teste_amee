@@ -26,7 +26,7 @@ class Validator:
 
     def validate_date(self, value):
         try:
-            datetime.strptime(value, '%Y-%m-%d')
+            datetime.strptime(value, '%Y-%m-%d').isoformat()
         except ValueError:
             return 'A data deve seguir o padrão ISO 8601 (YYYY-MM-DD).'
 
@@ -37,7 +37,9 @@ class Validator:
             return 'O valor deve ser numérico e usar o ponto como separador decimal.'
 
     def validate_barcode(self, value):
-        if not re.match("^[0-9]{13}$", value):
+        # Remove espaços em branco e outros caracteres invisíveis
+        value = str(value).strip()
+        if not re.match("^[0-9]{15}$", value):
             return "Código de barras deve conter apenas 13 números"
 
     def validate_cnpj(self, value):

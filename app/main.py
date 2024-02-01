@@ -8,6 +8,7 @@ from database import faturas_repository
 from validators import faturas_validation
 from postgres_repo import Database
 from controllers.faturas_controller import Faturas
+from faturas.upload_faturas import upload_faturas  
 
 # Cria uma instância da classe Database
 db = Database()
@@ -35,3 +36,5 @@ app.config['ENV'] = 'development'
 if __name__ == "__main__":
     app.run(debug=True, port=app.config['PORT'])
 
+ # Chama a função upload_faturas depois que a API estiver em execução
+    upload_faturas()
