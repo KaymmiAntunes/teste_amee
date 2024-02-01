@@ -22,9 +22,9 @@ db_connection = db.get_connection()
 db.migrate()
 
 # Adiciona os recursos da API
-api.add_resource(Faturas, '/faturas')
-api.add_resource(Faturas, '/faturas/<int:id>', endpoint='faturas_id')
-api.add_resource(Faturas, '/faturas/mes/<string:mes_referencia>', endpoint='faturas_mes_referencia')
+api.add_resource(Faturas, '/faturas') #Rota para manipular todas as faturas
+api.add_resource(Faturas, '/faturas/<int:id>', endpoint='faturas_id') # rota para manipular uma fatura específica por ID
+api.add_resource(Faturas, '/faturas/mes/<string:mes_referencia>', endpoint='faturas_mes_referencia')#rota para listar faturas de um mês específico
 
 # Configurações da aplicação
 app.config['APP_NAME'] = 'API de faturas de energia'
@@ -33,4 +33,5 @@ app.config['ENV'] = 'development'
 
 # Executa o aplicativo
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=app.config['PORT'])
+
