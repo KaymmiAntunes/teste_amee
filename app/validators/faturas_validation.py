@@ -1,4 +1,4 @@
-from .validators.Validator import Validator
+from .validator import Validator
 
 class FaturasValidation(Validator):
 

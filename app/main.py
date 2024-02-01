@@ -2,9 +2,9 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask import Flask
 from database import faturas_repository
-from validators import faturas_validation
-from app.database.faturas_repository import get_connection, migrate
-from app.controllers.faturas_controller import Faturas
+from .validators import faturas_validation
+from .database.faturas_repository import get_connection, migrate
+from .controllers.faturas_controller import Faturas
 
 app = Flask(__name__)
 api = Api(app)
