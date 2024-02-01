@@ -4,7 +4,7 @@ Este projeto é uma API RESTful para gerenciamento de faturas de energia. Ele é
 
 Pendência
 
-- [x] Criar Docker Compose para o MySQL
+- [x] Criar Docker Compose para o PostgresSQL
 - [x] Carregar variáveis de ambiente a partir de arquivo .env
 - [x] Conectar com o banco de dados
 - [x] Implementar a camada repository
